@@ -8,7 +8,7 @@ class PipelineRun(DynamicClientBase):
     API_VERSION = "tekton.dev/v1"
     KIND = "PipelineRun"
 
-    def list_pipelinerun(self, namespace: str):
+    def list_pipelineruns(self, namespace: str):
         """
         lists the pipelines of a given namespace
         :param namespace: object name and auth scope, such as for teams and projects (required)
@@ -16,7 +16,7 @@ class PipelineRun(DynamicClientBase):
         """
         return self._list(namespace=namespace)
 
-    def list_pipelinerun_for_all_namespace(self):
+    def list_pipelineruns_for_all_namespace(self):
         """
         lists pipelines from all namespaces
         :return: kubernetes.dynamic.resource.ResourceInstance
