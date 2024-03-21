@@ -34,3 +34,6 @@ class DynamicClientBase(ClientBase):
 
     def _list(self, namespace: str = "", name: str = ""):
         return self.api.get(namespace=namespace, name=name)
+
+    def _create(self, body: dict, namespace: str):
+        return self.api.create(body=body, namespace=namespace)

@@ -3,14 +3,14 @@ from osp.common.client_base import DynamicClientBase
 
 class PipelineRun(DynamicClientBase):
     """
-    Client to access pipeline custom resource
+    Client to access pipelinerun custom resource
     """
     API_VERSION = "tekton.dev/v1"
     KIND = "PipelineRun"
 
     def list_pipelineruns(self, namespace: str):
         """
-        lists the pipelines of a given namespace
+        lists the pipelinerun of a given namespace
         :param namespace: object name and auth scope, such as for teams and projects (required)
         :return: kubernetes.dynamic.resource.ResourceInstance
         """
@@ -18,7 +18,7 @@ class PipelineRun(DynamicClientBase):
 
     def list_pipelineruns_for_all_namespace(self):
         """
-        lists pipelines from all namespaces
+        lists pipelineruns from all namespaces
         :return: kubernetes.dynamic.resource.ResourceInstance
         """
         return self._list()
