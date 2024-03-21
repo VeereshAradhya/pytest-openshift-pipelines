@@ -37,3 +37,6 @@ class DynamicClientBase(ClientBase):
 
     def _create(self, body: dict, namespace: str):
         return self.api.create(body=body, namespace=namespace)
+
+    def _delete(self, name: str, namespace: str):
+        return self.api.delete(name=name, namespace=namespace, body={})

@@ -33,7 +33,7 @@ class Subscription(DynamicClientBase):
         """
         return self._list(namespace=namespace, name=name)
 
-    def create_subscription(self, name: str, namespace: str, catalog_source: str, 
+    def create_subscription(self, name: str, namespace: str, catalog_source: str,
                             catalog_source_namespace: str,
                             install_plan: str, channel: str):
         """
@@ -59,8 +59,8 @@ class Subscription(DynamicClientBase):
         }
         self._create(body=subscription_manifest, namespace=namespace)
 
-    def wait_for_subscription_status(self, name: str, namespace: str, 
-                                     status: str, interval: int, timeout: int):
+    def wait_for_subscription_status(self, name: str, namespace: str,
+                                     status: str, interval: int, timeout: int) -> str:
         """
         Wait till the subscription is in expected status
         :param name: name of the subscription
@@ -78,3 +78,12 @@ class Subscription(DynamicClientBase):
                 break
             sub = self.get_subscription(name=name, namespace=namespace)
         return sub.status.conditions[0]["status"]
+
+    def delete_subscription(self, name: str, namespace: str):
+        """
+        Delete a subscription
+        :param name: name of the subscription
+        :param namespace: namespace in which the subscription is present
+        :return:
+        """
+        return self._delete(name=name, namespace=namespace)
