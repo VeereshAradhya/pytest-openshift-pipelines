@@ -1,4 +1,5 @@
 from osp.common.client_base import DynamicClientBase
+from osp.util.util import poller
 
 
 class PipelineRun(DynamicClientBase):
@@ -30,3 +31,20 @@ class PipelineRun(DynamicClientBase):
         :return: kubernetes.dynamic.resource.ResourceInstance
         """
         return self._list(namespace=namespace, name=name)
+
+    def wait_for_pipelinerun_complete(self, name: str, namespace: str, interval: int, timeout: int):
+        """
+        Waits till the pipelinerun reaches expected status
+        :param name: name of the pipelinerun
+        :param namespace: namespace in which the pipelinerun is present
+        :param interval: interval for polling
+        :param timeout: polling timeout
+        :return: found status after timeout
+        """
+        pipelinerun_resource = self.get_pipelinerun(name=name, namespace=namespace)
+        polling = poller(interval=5, timeout=120)
+        for _ in polling:
+            if pipelinerun_resource.status.conditions[0]["reason"] != "Running":
+                pipelinerun_resource.status.conditions[0]["status"]
+            pipelinerun_resource = self.get_pipelinerun(name=name, namespace=namespace)
+        return pipelinerun_resource.status.conditions[0]["status"]

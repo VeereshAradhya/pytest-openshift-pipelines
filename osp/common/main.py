@@ -1,6 +1,7 @@
 from osp.api.pipeline import Pipeline
 from osp.api.pipelinerun import PipelineRun
 from osp.util.subscription import Subscription
+from osp.util.namespace import Namespace
 from kubernetes.dynamic.exceptions import ResourceNotFoundError
 
 
@@ -24,6 +25,7 @@ class API(OSPBase):
 
 class Utils(OSPBase):
     subscriptions = Subscription
+    namespace = Namespace
 
 
 class OSPMain(OSPBase):
