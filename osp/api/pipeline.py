@@ -23,7 +23,7 @@ class Pipeline(DynamicClientBase):
         """
         return self._list()
 
-    def get_pipeline(self, namespace: str, name: str):
+    def get_pipeline(self, name: str, namespace: str):
         """
         :param namespace: object name and auth scope, such as for teams and projects (required)
         :param name: name of the pipeline
