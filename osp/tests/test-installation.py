@@ -22,6 +22,10 @@ class TestInstallation(OSPTestCase):
         assert installation_status == "False"
 
     def test_installation_valid(self):
+        """
+        TODO:
+        1. Verify the deployments that gets created when the operator is installed
+        """
         self.OSP.utils.subscriptions.create_subscription(name="openshift-pipelines-operator-rh",
                                                          namespace="openshift-operators",
                                                          catalog_source="redhat-operators", install_plan="Automatic",
