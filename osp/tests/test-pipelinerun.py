@@ -17,12 +17,15 @@ class TestPipelineruns(OSPTestCase):
     def test_simple_pipelinerun_success(self):
         currentDir = os.path.dirname(__file__)
         stdout, stderr, returncode = oc_create(f"{currentDir}/testdata/simple_pipelinerun.yaml", self.namespace)
-        status = self.OSP.api.pipelinerun.wait_for_pipelinerun_complete(name="simple-pipelinerun", namespace=self.namespace, interval=10, timeout=120)
+        status = self.OSP.api.pipelinerun.wait_for_pipelinerun_complete(name="simple-pipelinerun",
+                                                                        namespace=self.namespace, interval=10,
+                                                                        timeout=120)
         assert status == "True"
-    
+
     def test_simple_pipelinerun_failure(self):
         currentDir = os.path.dirname(__file__)
         stdout, stderr, returncode = oc_create(f"{currentDir}/testdata/simple_pipelinerun_failure.yaml", self.namespace)
-        status = self.OSP.api.pipelinerun.wait_for_pipelinerun_complete(name="simple-pipelinerun-failure", namespace=self.namespace, interval=10, timeout=120)
+        status = self.OSP.api.pipelinerun.wait_for_pipelinerun_complete(name="simple-pipelinerun-failure",
+                                                                        namespace=self.namespace, interval=10,
+                                                                        timeout=120)
         assert status == "False"
-    
