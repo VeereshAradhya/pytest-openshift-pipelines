@@ -42,9 +42,9 @@ class PipelineRun(DynamicClientBase):
         :return: found status after timeout
         """
         pipelinerun_resource = self.get_pipelinerun(name=name, namespace=namespace)
-        polling = poller(interval=5, timeout=120)
+        polling = poller(interval=interval, timeout=timeout)
         for _ in polling:
             if pipelinerun_resource.status.conditions[0]["reason"] != "Running":
-                pipelinerun_resource.status.conditions[0]["status"]
+                break
             pipelinerun_resource = self.get_pipelinerun(name=name, namespace=namespace)
         return pipelinerun_resource.status.conditions[0]["status"]

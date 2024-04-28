@@ -1,0 +1,15 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: simple-pipelinerun-failure
+spec:
+  pipelineSpec:
+    tasks:
+      - name: echo-task
+        taskSpec:
+          steps:
+            - name: echo
+              image: registry.redhat.io/ubi8/ubi-minimal
+              script: |
+                echo "hello world"
+                exit 1
