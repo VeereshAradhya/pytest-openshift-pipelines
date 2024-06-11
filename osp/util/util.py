@@ -35,7 +35,6 @@ def oc_apply(path: str, namespace: str) -> bool:
     """
     Runs `oc apply -f $path` and returns stdout and stderr
     """
-    print(os.getcwd())
     return run_command(f"oc apply -f {path} -n {namespace}")
 
 
@@ -43,5 +42,4 @@ def oc_delete(path: str, namespace: str) -> bool:
     """
     Runs `oc delete -f $path` and returns stdout and stderr
     """
-    print(os.getcwd())
     return run_command(f"oc delete -f {path} -n {namespace}")
